@@ -1,7 +1,7 @@
 #!/bin/bash
 # =============================================================================
-# - title        : Migrating Servers Using RSYNC
-# - description  : This Script Will Migrate Data From one Instance to another
+# - title        : Migrating Servers Using RSYNC on Rackspace
+# - description  : For migrating the data between instances.
 # - License      : General Public License
 # - author       : Melissa Bromley
 # - date         : 2014-04-29
@@ -198,8 +198,8 @@ apt-get -y install rsync > /dev/null 2>&1
 EOF
 
 if [ "${INFLAMMATORY}" == "True" ];then 
-    echo -e "Great choice by choosing a Debian Based Distro. 
-The Debian way is by far the best way."; 
+    echo -e "Great choice by choosing a Ubuntu Based Distro. 
+The Ubuntu way is by far the best way."; 
     sleep 1
   fi
 }
@@ -331,6 +331,28 @@ function RUNMAINPROCESS() {
   RSYNC_FLAGS="${RSYNC_FLAGS} --checksum"
   RUNRSYNCCOMMAND
 }
+
+# Say  something nice and exit
+# =============================================================================
+function IAMDONE() {
+  echo "all Done."
+
+  if [ "${INFLAMMATORY}" == "True" ];then 
+    echo -e "I hope you enjoyed all of my hard work... :)"
+  fi
+
+  GITHUBADDR="\033[1;36mhttps://github.com/kshitijgupta/CMPE283Sync.git033[0m"
+  
+  echo -e "
+Stop by ${GITHUBADDR} for other random tidbits...
+"
+
+  if [ "${INFLAMMATORY}" == "True" ];then 
+    echo -e "You have reached the end of script...\033[1;33m This concludes the demo for RSYNC Automation\033[0m, :)
+"
+  fi
+}
+
 
 
 # Run Script
@@ -468,15 +490,14 @@ echo -e "If you were copying something that was not a Rackspace Cloud Server,
 You may need to ensure that your setting are correct, and the target is healthy
 "
 
-#AMAZONWARNING
 
 echo -e "Other wise you are good to go, and the target server should have been 
 rebooted. If all is well, you should now be able to enjoy your newly cloned 
 Virtual Instance.
 "
 
-# Say something nice
-#ALLDONE
+# End of synchronization
+IAMDONE
 
 # Teardown what I setup on the source node and exit
 QUIT
