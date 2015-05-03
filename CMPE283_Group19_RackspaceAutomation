@@ -386,8 +386,6 @@ EXCLUDE_LIST='/boot /dev/ /etc/conf.d/net /etc/fstab /etc/hostname
 # Allow the user to add excludes to the general Exclude list
 USER_EXCLUDES=${USER_EXCLUDES:-""}
 
-# Amazon Exclude List; The exclude list is space Seperated
-AMAZONEXCLUDE_LIST='/etc/sysctl.conf /etc/yum.repos.d/amzn-*'
 
 # Extra Exclude File 
 EXCLUDE_FILE='/tmp/excludeme.file'
@@ -443,9 +441,6 @@ Service Net = \033[1;32mFREE\033[0m Bandwidth.
 Public Net  = \033[1;35mNOT FREE\033[0m Bandwidth
 " 
 
-# Run the Amazon Check
-#ISTHISAMAZON
-
 # If the Target IP is not set, ask for it
 GETTIP
 
@@ -465,9 +460,6 @@ RSYNCCHECKANDSET
 # Create a Key for target access and send over a dependency script
 KEYANDDEPSEND
 
-# If this is an amazon AMI linux Distro send over a post processing script
-#AMAZONPOSTPROCESSES
-
 # Removing known_host entry made by script
 if [ -f "/root/.ssh/known_hosts" ];then
   cp /root/.ssh/known_hosts /tmp/known_hosts
@@ -478,7 +470,6 @@ RUNPREPROCESS
                        
 RUNMAINPROCESS
 
-#AMAZONPROCESSES
 
 echo -e "\033[1;36mThe target Instance is being rebooted\033[0m"
 
